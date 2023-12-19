@@ -324,6 +324,16 @@ poll = JSON.parse(poll);
 hexql.push(poll);
 console.log(hexql);
 
+
+let codetest = JSON.stringify(hexql);
+try {
+JSON.parse(codetest);
+  } catch (error) {
+    return "error";
+  }
+  
+
+
 let inidata = encodeURIComponent(JSON.stringify(hexql));
 
 
@@ -987,7 +997,15 @@ upDateIt(hexql, call);
 
 function upDateIt(hex, call) {
     
-    
+let code = JSON.stringify(hex);
+try {
+JSON.parse(code);
+  } catch (error) {
+    return "error";
+  }
+
+
+
 let inidata = encodeURIComponent(JSON.stringify(hex));
 
 
