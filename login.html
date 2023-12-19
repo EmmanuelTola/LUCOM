@@ -116,7 +116,7 @@ let matric = document.getElementById('matric').value;
 $QUERY($con, $db, `SELECT users WHERE matric = '${matric}'`).pull(check);
 
 function check(data) {
- 
+ alert(data)
     try {
 if(data == "")  {
    
@@ -126,11 +126,12 @@ document.getElementById('error').innerText = 'Create Account';
 document.getElementById('email').style.display = 'block'; 
  
  
-} else {      
+} else {
+ alert('debug'); 
 let pass = document.getElementById('password').value; 
 let obj = data[0];
 let key = obj['password'];
- alert(key); 
+ 
 if(key == pass) {
 document.getElementById('error').innerText = 'Logging You In...'; 
 let id = obj['id'];
