@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="asset/banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="asset/favico.ico">
+<meta data-react-helmet="true" name="description" content="How'd You Hear That Sound? Review It With SoundScale"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Lucom Events">
+<meta property="twitter:description" content="How'd You Hear That Sound? Review It With SoundScale">
+<meta property="twitter:image" content="https://lucom.vercel.app/favico.ico">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Lucom Events</title>
+<link rel="stylesheet" href="xql/hex.css">
+<script src="xql/xcon.js"></script>
+<script src="xql/hex.js?v=econd"></script>
+<script src="xql/query.js"></script>
+<script src="xql/que.js?v=jo11bs"></script>
+</head>
+<body>
+<style>
+html, body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]{ display: none; }
+.push, .load, .user, .sett, .fav {
+width: 100vw; 
+height: 100vh; 
+background: white; 
+z-index: 99; 
+position: fixed; 
+top: 0;
+left: 0;
+overflow-y: scroll;
+}
+.sett {
+  z-index: 100;
+}
+.user, .fav {
+z-index: 97;
+background: white;
+}
+.inpush {
+height: 100%; 
+overflow-y: scroll; 
+padding-bottom: 30px;
+}
+
+.inp {
+padding: 7px 15px;
+height: 30px; 
+width: calc(95% - 30px);
+font-family: 'Outfit';
+font-size: 16px;
+border: 1.5px solid grey; 
+border-radius: 10px;
+margin-bottom: 12px;
+}
+
+input[field="date"]:before {
+content: attr(placeholder) !important;
+color: #aaa;
+margin-right: 0.5em;
+  }
+input[field="date"]:focus:before,
+input[field="date"]:valid:before {
+content: "";
+}
+
+
+</style>
+
+
+<div id="upload" style="height: 35px; display: none; position: fixed; top: 0; width: 100vw; background: white; z-index: 40;">
+<div flex style="align-items: center">
+ <img alt="loader" margin="5px,10x,0px,10%" width="27px" src="asset/loader.gif"><in font="Outfit">Uploading Event...</in>
+</div>
+</div> 
+
+
+
+
+
+<button fixed push="bottom right" id="add" noborder radius="50%" width="63px" height="63px" color="white" font="Outfit" size="25px" absolut margin="0,10px,20px,0" class="btn" back="#055576"><i class="fa fa-plus"></i></button>
+
+
+
+<div fixed width="100%" push="top">
+<img margin="-65px top" width="100%" src="asset/upgreen.png">
+</div> 
+    
+<br>
+<div margin="10px left" flex style="align-items: center;">
+<img margin="-10px bottom" border="0.1px solid grey" round width="70px" height="70px" id="userimg">&nbsp;&nbsp;
+<div><p margin="0 bottom" bold font="Poppins" size="20px"><in id="username"></in>&nbsp;&nbsp;<in id="check"></in></p>
+<in font="Outfit">Clearance: <in id="clear"></in></in>
+</div>
+</div>
+<br>
+<hr>
+ 
+<div flex-wrap id="feed" width="95%" page-middle-h>
+
+<div display="inline-block" style="margin: 0 5px; width: calc(50% - 20px); flex: 0 0 auto; max-width: 200px">
+<img ratio="3/2.6" src="$img" width="100%">
+<br>
+<button onclick="edit('$id')" width="70%" theme="light" size="17px" font="Outfit"><i class="fa fa-pen"></i>&nbsp;&nbsp;Edit</button> &nbsp; <i class="fa fa-trash" size="20px" bold onclick="remove('$id')"></i>
+</div>
+
+</div>
+
+
+
+
+
+<div class="push" style="display: none;" id="push">
+<segment class="inpush">
+<section width="95%" margin="2.5% left" padding="4px top">
+<div flex style="align-items: center;">
+<button back="none" border="0.1px solid grey" width="35px" height="35px" radius="50%" size="22px" bold onclick="hide('#push');"><i class="fa fa-times"></i></button>
+&nbsp;&nbsp; <img round width="32px" height="32px" id="userimg">&nbsp;&nbsp; <p bold font="Poppins" size="16px" id="username"></p>&nbsp;&nbsp;<in id="check"></in>
+</div>
+<insert call="history.go(0)" data="lucom" table="events">
+<form>
+<input name="userid" id="userid" hidden>
+<input name="created" value="$dtime" hidden>
+<input name="id" value="$js-makeid(8)" hidden>
+<input name="name" class="inp" placeholder="Event Name...">
+<input field="date" type="date" class="inp" name="date" placeholder="Event Date
+...">
+
+<input field="date" type="time" class="inp" name="time" placeholder="Event Time
+...">
+<textarea height="200px" placeholder="Event Description..." name="bio" class="inp"></textarea>
+<input hidden name="file" type="file" id="file-input" class="updd" accept="image/*">
+<div flex relative style="align-items: center">
+<img radius="7px" id="proff" onclick="proPic(); document.getElementById('file-input').click();" src="asset/create.jpg" style="width: 50%;">
+
+<button type="submit" name="submit" onclick="show('#upload'); hide('#push')" noborder radius="50%" width="63px" height="63px" color="white" font="Outfit" size="25px" absolute push="right" margin="10px right" class="btn" back="#055576"><i class="fa fa-send"></i></button>
+</div>
+    
+</form>   
+</insert>  
+    
+</section> 
+</segment>
+</div>
+
+<div class="push" style="display: none;" id="edit">
+<segment class="inpush">
+<section width="95%" margin="2.5% left" padding="4px top">
+<div flex style="align-items: center;">
+<button back="none" border="0.1px solid grey" width="35px" height="35px" radius="50%" size="22px" bold onclick="hide('#edit');"><i class="fa fa-times"></i></button>
+&nbsp;&nbsp; <img round width="32px" height="32px" id="userimg">&nbsp;&nbsp; <p bold font="Poppins" size="16px" id="username"></p>&nbsp;&nbsp;<in id="check"></in>
+</div>
+<update id="query" call="history.go(0)" data="lucom" table="events">
+<form>
+<input id="ename" name="name" class="inp" placeholder="Event Name...">
+<input id="edate" field="date" type="date" class="inp" name="date" placeholder="Event Date
+...">
+
+<input id="etime" field="date" type="time" class="inp" name="time" placeholder="Event Time
+...">
+
+<textarea id="ebio" height="200px" placeholder="Event Description..." name="bio" class="inp"></textarea>
+
+<input hidden use="dummy" type="file" id="filen" class="updd" accept="image/*">
+<input id="filenn" name="file" hidde>
+<div flex relative style="align-items: center">
+<img radius="7px" class="upimg" id="proff" onclick="fileUp(); document.getElementById('filen').click();" src="asset/create.jpg" style="width: 50%;">
+
+<button type="submit" name="submit" onclick="show('#upload'); hide('#edit')" noborder radius="50%" width="63px" height="63px" color="white" font="Outfit" size="25px" absolute push="right" margin="10px right" class="btn" back="#055576"><i class="fa fa-send"></i></button>
+</div>
+    
+</form>   
+</update>  
+    
+</section> 
+</segment>
+</div>
+
+
+<div pop="permit">
+<div page-middle-h font="Poppins" size="20px">
+<i bold size="40px" color="red" class="fa fa-warning"></i><br><hr><in bold="3">No Clearance For This Action.</in><br><in bold opacity="0.6">Contact the necessary representative to add an event</in></div>
+</div>
+
+<div pop="delask CANCEL">
+<div page-middle-h font="Poppins" size="20px">
+<i bold size="40px" color="red" class="fa fa-warning"></i><br><hr><in bold="3">Are you sure you want to delete?</in><br><in bold opacity="0.6">This action cannot be reversed</in></div>
+<br>
+<button id="kill" theme="smart" width="70%" size="20px">Delete</button>
+</div>
+
+
+<script>
+    
+$IMPORT('@UI'); 
+const $con = "IiTkoYgn4IMbArj7JtAw"; 
+const $db = "lucom";
+let $email = []; 
+let $data = ""; 
+$START('XQL:'+$con); 
+let user = localStorage.getItem('lucom');
+if(user == null) {
+
+document.getElementById('add').onclick = function(){
+    hexPop('permit');
+    } 
+    
+    
+} else {
+document.getElementById('add').onclick = function(){
+    show('#push');
+    }
+
+    
+$QUERY($con, $db, `SELECT users WHERE id = '${user}'`).pull(curr); 
+function curr(data) {
+if(data == "") {
+document.getElementById('add').onclick = function(){
+    hexPop('permit');
+    } 
+}
+else {
+let $user = data[0]; 
+let pic = xqlfile + $user['pic'];
+let email = $user['email'];
+
+$email.push(email);
+let name = $user['name'];
+
+if(name == "" || name == "null" || name == null) {
+name = $user['matric'];
+}
+let userid = $user['id']; 
+let level = $user['level'];
+let check = "";
+let clear = "Ground User"; 
+if(level == "dev") {
+check = '<i class="blue-tick" style="color: gold">'; 
+clear = "Developer"; 
+}
+
+if(level == "2") {
+check = '<i class="blue-tick" style="color: blue">';
+clear = "Representative"; 
+}
+
+if(level == "1" || level == null || level == undefined || level == "null") {
+    document.getElementById('add').onclick = function(){
+    hexPop('permit');
+    }
+    
+    
+    
+}
+
+if(level == "3") {
+check = '<i class="blue-tick" style="color: purple">';
+clear = "Administrative"; 
+}
+
+
+document.getElementById('userid').value = userid; 
+inSrc('#userimg', pic); 
+
+inAttr('#userimg', 'fallback', xqlfile + 'icon.png');
+rootHex();
+inText('#username', name); 
+inHTML('#check', check);
+inText('#clear', clear);    
+}  
+
+}
+
+}
+
+
+const scant = document.getElementById('feed'); 
+const cont = scant.innerHTML; 
+scant.innerHTML = ""; 
+let currid = localStorage.getItem("lucom");
+$QUERY($con, $db, `SELECT events WHERE userid = '${currid}'`).pull(feed); 
+
+
+function feed(data) {
+for(const row of data) {
+row['img'] = xqlfile + row['file'];    
+}
+$data = data; 
+let targ = document.getElementById('feed'); 
+let div = loop(data, cont); 
+targ.innerHTML = div; 
+}
+
+
+function edit(rid) {
+document.getElementById('query').setAttribute('query', 'id = '+rid); 
+show('#edit');   
+let feed = $data.filter(item => item['id'] == rid); 
+let row = feed[0];
+inValue('#ename', row['name']); 
+inValue('#edate', row['date']); 
+inValue('#etime', row['time']); 
+inValue('#ebio', row['bio']); 
+inValue('#filenn', row['file']); 
+
+
+    
+}
+ 
+
+
+
+
+function fileUp() {
+document.querySelector('#filen').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('.upimg'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+let fname = this.files[0].name; 
+fname = fname.replace(/\s/, '-'); 
+fname = fname.replace(/\)/, '');
+fname = fname.replace(/\(/, ''); 
+document.getElementById('filenn').value = fname; 
+// set src to file url
+    }
+  });
+}
+
+function remove(id) {
+document.getElementById('kill').onclick = function(){
+    kill(id); 
+}
+hexPop('delask'); 
+}
+
+function kill(id) {
+$DELETE($db, `DELETE events WHERE id = '${id}'`, 'history.go(0)');   
+    
+}
+
+
+
+
+function proPic(){ 
+
+    document.querySelector('.updd').addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      var img = document.querySelector('#proff'); // $('#proff')[0]
+      img.src = URL.createObjectURL(this.files[0]); // set src to file url
+    }
+  });
+} 
+
+    
+    
+    
+</script>

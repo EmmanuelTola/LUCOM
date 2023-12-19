@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="asset/banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="asset/favico.ico">
+<meta data-react-helmet="true" name="description" content="How'd You Hear That Sound? Review It With SoundScale"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Lucom Events">
+<meta property="twitter:description" content="How'd You Hear That Sound? Review It With SoundScale">
+<meta property="twitter:image" content="https://lucom.vercel.app/favico.ico">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Lucom Events</title>
+<link rel="stylesheet" href="xql/hex.css">
+<script src="xql/xcon.js"></script>
+<script src="xql/hex.js?v=cpopop"></script>
+<script src="xql/query.js"></script>
+<script src="xql/que.js?v=jo11bs"></script>
+</head>
+<body>
+<style>
+html, body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]{ display: none; }
+    
+.nav .btn {
+float: left;
+    
+}
+
+.nav #minor i{
+font-size: 21px;
+margin: 0 9%;
+}
+
+.nav #minor {
+width: calc(80% - 40px);
+margin: 0px 10px;
+height: 20px;
+justify-content: center;
+display: flex;
+padding: 10px 10px;
+}
+
+.nav {
+align-items: center;
+}
+
+#push, .load, .user, .sett, .fav {
+width: 100vw; 
+height: 100vh; 
+background: white; 
+z-index: 99; 
+position: fixed; 
+top: 0;
+left: 0;
+overflow-y: scroll;
+}
+.sett {
+  z-index: 100;
+}
+.user, .fav {
+z-index: 97;
+background: white;
+}
+.inpush {
+height: 100%; 
+overflow-y: scroll; 
+padding-bottom: 30px;
+}
+
+.inp {
+padding: 7px 15px;
+height: 30px; 
+width: calc(95% - 30px);
+font-family: 'Outfit';
+font-size: 16px;
+border: 1.5px solid grey; 
+border-radius: 10px;
+margin-bottom: 12px;
+}
+
+input[field="date"]:before {
+content: attr(placeholder) !important;
+color: #aaa;
+margin-right: 0.5em;
+  }
+input[field="date"]:focus:before,
+input[field="date"]:valid:before {
+content: "";
+}
+
+#promo { 
+     width: 100vw;
+  float: left;
+  align-items: center;
+  justify-content: center;
+}
+.promo-container {
+  display: inline-flex;
+ 
+  
+  scrollbar-width: none;
+  transform: translateX(0);
+  will-change: transform;
+  transition: transform 0.3s ease-out;
+  cursor: grab;
+}
+
+.popbody{
+  overflow-y: scroll !important;
+} 
+ 
+ .eve {
+top: 0% !important; 
+width: calc(100% - 40px) !important;
+height: 100vh;
+border-radius: 0 !important;
+transform: translate(-50%, 0%) !important;
+     
+ }
+ 
+.poptext {
+max-height: 90vh !important;
+}
+ 
+</style>
+
+
+<script>
+let prev = ""; 
+window.addEventListener('popstate', function(event) {
+  if (prev && prev === 'event') {
+console.log('User navigated back; close pop up.');
+
+  
+let pop = document.querySelectorAll('.popbody'); 
+
+pop.forEach(function(row){
+ row.style.display = 'none';   
+}); 
+}
+
+if (prev && prev === 'user') {
+console.log('User navigated back; close User page.');
+
+hide('#user'); 
+}
+
+if (prev && prev === 'sett') {
+console.log('User navigated back; close User page.');
+
+hide('#sett'); 
+}
+
+if (prev && prev === 'save') {
+console.log('User navigated back; close User page.');
+
+hide('#fav'); 
+}
+
+    
+});
+
+function openPop() { 
+    
+const mediaState = { page: 'event' };
+prev = "event"; 
+  history.pushState(mediaState, null, '#event');
+
+}
+
+function openUser() { 
+    
+const mediaState = { page: 'user' };
+prev = "user"; 
+  history.pushState(mediaState, null, '?page=user#user');
+
+}
+
+function openSave() { 
+    
+const mediaState = { page: 'save' };
+prev = "save"; 
+  history.pushState(mediaState, null, '?page=save#save');
+
+}
+
+
+
+
+
+function openSett() { 
+    
+const mediaState = { page: 'sett' };
+prev = "sett"; 
+  history.pushState(mediaState, null, '#settings');
+  show('#sett'); 
+
+}
+
+
+
+
+function closeU() {
+if (prev && prev === 'user') {
+
+history.go(-1);    
+    
+}
+}
+
+function closeF() {
+if (prev && prev === 'save') {
+
+history.go(-1);    
+    
+}
+
+
+    
+}
+
+function closeS() {
+if (prev && prev === 'sett') {
+
+history.go(-1);    
+    
+}
+
+    
+}
+
+
+
+function shareNow(linkh, nameh) {
+let link = "https://lucomdev.000webhostapp.com/index.html?event="+linkh;  
+ if (navigator.share) {
+navigator.share({
+ 
+title: nameh,
+url: link
+                }).then(() => {
+console.log('Thanks for sharing!');
+}).catch(err => {
+console.log("Error while using Web share API:");
+console.log(err);
+  });} else {
+
+
+ copyClip(link)     
+      
+      
+  }}
+
+ function copyClip(linkh) {
+  let temp = document.createElement("input");
+  document.body.append(temp);
+  temp.value = linkh;
+  temp.select();
+  document.execCommand("copy");
+  temp.remove();
+show('#copied'); 
+setTimeout(function() {
+hide('#copied');
+
+}, 2000); 
+        
+    }
+
+
+    
+</script>
+
+<center>
+<button id="copied" style="display: none; background: rgba(0,0,0,0.7); width: 70vw; padding: 10px 20px 10px 10px; font-size: 17px; position: fixed; bottom: 0px; margin-bottom: 47vh; z-index: 9999999; height: 35px; left: 0px; margin-left: calc(15vw - 10px);  border: none; color: white; border-radius: 10px;">Event Link Copied</button>
+<button id="reminder" style="display: none; background: rgba(0,0,0,0.7); width: 70vw; padding: 10px 20px 10px 10px; font-size: 17px; position: fixed; bottom: 0px; margin-bottom: 47vh; z-index: 99999999; height: 35px; left: 0px; margin-left: calc(15vw - 10px);  border: none; color: white; border-radius: 10px;">Saved: Reminder Set!</button>
+
+</center> 
+
+    
+<div id="upload" style="height: 35px; display: none; position: fixed; top: 0; width: 100vw; background: white; z-index: 40;">
+<div flex style="align-items: center">
+ <img alt="loader" margin="5px,10x,0px,10%" width="27px" src="asset/loader.gif"><in font="Outfit">Uploading Event...</in>
+</div>
+</div> 
+
+<div id="find" style="display: none;" fixed push="top" width="100%" index="98" back="white" padding="10px,0,10px,0">
+<div style="align-items: center" flex center>
+<input id="search" margin="10px left" height="50px" class="inp" type="search" placeholder="Find Event...">&nbsp;&nbsp;<i onclick="find();" margin="10px right" class="fa fa-search" size="30px"></i>
+</div>
+</div>
+<div index="98" width="100%" margin="10px bottom" class="nav" fixed push="bottom" flex>
+    
+<div index="98" radius="7px" theme="shadow" id="minor" back="white">
+<i onclick="hide('#user'); closeU(); closeF(); hide('#user'); hide('#fav');" class="fa fa-house"></i>
+<i onclick="toggle('#find'); closeU(); closeF(); hide('#user'); hide('#fav');" class="fa fa-search"></i>
+<i onclick="openSave(); show('#fav'); closeU(); hide('#user')" style="font-weight: 100" class="fa fa-bookmark"></i>
+<i onclick="openUser(); show('#user'); closeF(); hide('#fav')" style="font-weight: 100" class="fa fa-user"></i>
+
+</div>
+
+<button id="add" noborder radius="50%" width="63px" height="63px" color="white" font="Outfit" size="25px" absolut push="right" margin="10px right" class="btn" back="#055576"><i class="fa fa-plus"></i></button>
+</div>
+
+
+<div pop="permit">
+<div page-middle-h font="Poppins" size="20px">
+<i bold size="40px" color="red" class="fa fa-warning"></i><br><hr><in bold="3">No Clearance For This Action.</in><br><in bold opacity="0.6">Contact the necessary representative to add an event</in></div>
+</div>
+
+<div style="display: none;" id="push">
+<segment class="inpush">
+<section width="95%" margin="2.5% left" padding="4px top">
+<div flex style="align-items: center;">
+<button back="none" border="0.1px solid grey" width="35px" height="35px" radius="50%" size="22px" bold onclick="hide('#push');"><i class="fa fa-times"></i></button>
+&nbsp;&nbsp; <img round width="32px" height="32px" id="userimg">&nbsp;&nbsp; <p bold font="Poppins" size="16px" id="username"></p>&nbsp;&nbsp;<in id="check"></in>
+</div>
+<insert call="recent()" data="lucom" table="events">
+<form>
+<input name="userid" id="userid" hidden>
+<input name="created" value="$dtime" hidden>
+<input name="id" value="$js-makeid(8)" hidden>
+<input name="name" class="inp" placeholder="Event Name...">
+<input field="date" type="date" class="inp" name="date" placeholder="Event Date
+...">
+
+<input field="date" type="time" class="inp" name="time" placeholder="Event Time
+...">
+<textarea height="200px" placeholder="Event Description..." name="bio" class="inp"></textarea>
+<input hidden name="file" type="file" id="file-input" class="updd" accept="image/*">
+<div flex relative style="align-items: center">
+<img radius="7px" id="proff" onclick="proPic(); document.getElementById('file-input').click();" src="asset/create.jpg" style="width: 50%;">
+
+<button type="submit" name="submit" onclick="show('#upload'); hide('#push')" noborder radius="50%" width="63px" height="63px" color="white" font="Outfit" size="25px" absolute push="right" margin="10px right" class="btn" back="#055576"><i class="fa fa-send"></i></button>
+</div>
+    
+</form>   
+</insert>  
+    
+</section> 
+</segment>
+</div>
+
+<div width="100%" id="slide">
+
+<div relative>
+<img width="100%" ratio="3/2.5" src="$img">
+<div absolute push="bottom" style="width: calc(100% - 20px);" index="9" padding="15px,10px,15px,10px" margin="-10px bottom" back="rgba(0,0,0,0.8)" color="white" >
+<in margin="0 top" size="20px" bold font="Rubik">$name<br><in size="16px">$date</in></in>
+<br>
+<button onclick="hexPop('$id'); openPop()" margin="5px top" back="white" theme="smart" font="Poppins" uppercase size="17px" bold>See Info <i class="fa fa-exclamation-circle"></i></button>
+</div>
+
+</div>
+</div>
+
+<section id="swiper" class="promo-container">
+</section>
+
+
+<div id="events">
+
+<div $pop pop-class="eve">
+<img border="0.4px solid grey" onclick="this.requestFullscreen()" radius="3px" src="$img" width="80%">&nbsp; <i size="27px" bold onclick="shareNow('$id', '$name')" class="fa fa-share-alt"></i>
+<div flex style="align-items: center;" width="100%"><p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 75%" bold="2" font="Rubik" size="20px">$name</p>&nbsp;&nbsp;
+<div><button padding="6px" radius="50%" ratio="1/1" border="0.2px solid grey" name="likebtn" id="likebtn" flex onclick="like('$id', '$currid', '$col', '$img', '$name', '$keep', '$date, $time');" style="background: none; align-items: center; float: right; width: auto; font-size: 30px;"><i id="like$id" style="color: $col" class="fa-regular fa-heart"></i> &nbsp;<size down="15" id="numlike$id">$trend</size></button> 
+</div>
+</div>
+<in font="Outfit">$date, $time</in>
+<hr>
+$bio    
+</div>
+
+    
+</div>
+
+
+
+
+<p margin="10px left" size="22px" bold font="Rubik">TRENDING</p>
+<div noscroll width="100%" id="trend" style="overflow: auto; display: flex;">
+<div style="flex: 0 0 auto;" margin="0,5px,0,5px" width="200px">
+<img ratio="3/2.5" onclick="hexPop('$id'); openPop()" src="$img" width="100%">
+<br>
+<button width="70%" index="1" size="16px" font="Outfit" theme="smart"><i size="20px" color="red" class="fa fa-fire"></i>&nbsp;&nbsp;$trend Saves
+</button>
+</div>    
+</div>
+
+
+<div id="load" class="load">
+ 
+<div page-middle>
+ <img src="asset/loader.gif" width="120px">   
+</div>
+ 
+</div>
+
+
+
+
+
+<p id="larea" margin="10px left" size="22px" bold font="Rubik">LATEST EVENTS</p>
+
+
+<div id="latest">
+<div margin="10px bottom" relative theme="smart" page-middle-h width="85%" radius="5px">
+<div back="white" padding="12px" radius="0 5px 0 5px" absolute push="top right">$date<br><size bold opacity="0.7" down="2">$time</size></div>
+<img src="$img" noselect width="100%" ratio="3/2.6">
+<div relative flex style="align-items: center;" width="100%"><p style="word-wrap: wrap; max-width: 70%" bold="2" font="Rubik" size="18px">$name</p>&nbsp;&nbsp;<button onclick="hexPop('$id'); openPop()" absolute push="right" theme="smart" width="auto">View ></button>
+</div>
+
+<in>$made</in>
+<button noborder name="likebtn" id="likebtn" flex onclick="like('$id', '$currid', '$col', '$img', '$name', '$keep', '$date, $time');" style="background: none; align-items: center; float: right; width: auto; font-size: 30px;"><i style="color: $col" id="like$id" class="fa-regular fa-heart"></i> &nbsp;<size down="15" id="numlike$id">$trend</size></button>    
+    
+</div>
+    
+    
+</div>
+
+<div style="display: none;" class="user" id="user">
+<div fixed width="100%" push="top">
+<img margin="-65px top" width="100%" src="asset/upgreen.png">
+</div> 
+    
+<br>
+<div margin="10px left" flex style="align-items: center;">
+<img margin="-10px bottom" border="0.1px solid grey" round width="70px" height="70px" id="userimg">&nbsp;&nbsp;
+<div><p margin="0 bottom" bold font="Poppins" size="20px"><in id="username"></in>&nbsp;&nbsp;<in id="check"></in></p>
+<in font="Outfit">Clearance: <in id="clear"></in></in>
+</div>
+</div>
+<br>
+<hr>
+<div noselect width="95%" page-middle-h>
+<div relative flex style="align-items: center;" onclick="openSave(); show('#fav')"><i size="30px" class="fa fa-heart"></i>&nbsp;&nbsp;<p size="18px" font="Poppins">Saved Events</p><i absolute push="right" size="25px" class="fa fa-angle-right"></i>
+</div>
+<hr>
+<div onclick="openSett();" relative flex style="align-items: center;">
+<i size="30px" class="fa fa-cog"></i>&nbsp;&nbsp;<p size="18px" font="Poppins">Settings</p><i absolute push="right" size="25px" class="fa fa-angle-right"></i>
+</div>
+<hr>
+<div id="admin" relative flex style="align-items: center;">
+<i size="30px" class="fa fa-pen-to-square"></i>&nbsp;&nbsp;<p size="18px" font="Poppins">Admin Panel</p><i absolute push="right" size="25px" class="fa fa-angle-right"></i>
+</div>
+<hr>
+ 
+ 
+ 
+<div flex center style="align-items: center; justify-content: center">
+<i size="30px" class="fa fa-power-off" color="red"></i>&nbsp;&nbsp;<p size="18px" font="Poppins">Logout</p>
+</div>
+
+</div>  
+</div>
+
+
+<div style="display: none;" class="sett" id="sett">
+<div fixed width="100%" push="top">
+<img margin="-65px top" width="100%" src="asset/upgreen.png">
+</div> 
+
+ <br>
+<div flex style="align-items: center;">
+&nbsp;&nbsp;<button index="99" back="none" border="0.1px solid grey" width="35px" height="35px" radius="50%" size="22px" bold onclick="closeS();"><i class="fa fa-times"></i></button>
+</div>
+<update page-middle-h width="95%" query="id = $js-localStorage.getItem('lucom')" call="history.go(0)" data="lucom" table="users">
+<form>
+<img onclick="fileUp(); document.getElementById('filen').click()" class="upimg" id="userimg" width="100px" round>
+<br><br>
+<input use="dummy" type="file" hidden id="filen">
+<input name="pic" hidden id="filenn">
+<input style="pointer-events: none; background: rgba(0,0,0,0.1)" name="matric" id="smat" class="inp">
+<input name="name" id="sname" class="inp" placeholder="Display Name...">
+
+<input placeholder="Email Address..." name="email" id="semail" class="inp">
+<br>
+<center>
+<button theme="smart" back="rgba(250,265,137)" color="black" size="20px" onclick="show('#load')" type="submit" name="submit">Update Profile</button>
+</center>
+</form>
+</update>
+    
+    
+</div>
+    
+<div style="display: none;" class="fav" id="fav">
+<div fixed width="100%" push="top">
+<img margin="-115px top" width="100%" src="asset/upgreen.png">
+</div> 
+
+<br>
+
+<div id="saves" width="95%" page-middle-h>
+
+<div index="9" onclick="hexPop('$id'); openPop();" margin="12px bottom" theme="smart" width="90%" relative flex style="align-items: center; background-blend-mode: none ! import ant; mix-blend-mode: none ! important;">
+<img src="$img" width="80px" height="80px" radius="8px">&nbsp;&nbsp; <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100% - 110px);" font="Poppins" size="16.5px" bold>$name</p>&nbsp; <i bold class="fa fa-angle-right" absolute push="right"></i>
+    
+    
+</div>
+    
+    
+    
+</div>
+ 
+ 
+ 
+ 
+ 
+</div>
+
+
+
+
+
+
+<br><br><br><br>
+
+<script>
+$IMPORT('@UI'); 
+const $con = "IiTkoYgn4IMbArj7JtAw"; 
+const $db = "lucom";
+let $email = []; 
+$START('XQL:'+$con); 
+let user = localStorage.getItem('lucom');
+if(user == null) {
+
+document.getElementById('add').onclick = function(){
+    hexPop('permit');
+    } 
+document.getElementById('admin').onclick = function(){
+    hexPop('permit');
+    } 
+    
+    
+} else {
+document.getElementById('add').onclick = function(){
+    show('#push');
+    }
+
+document.getElementById('admin').onclick = function(){
+location.href = "admin.html"; 
+    } 
+    
+    
+$QUERY($con, $db, `SELECT users WHERE id = '${user}'`).pull(curr); 
+function curr(data) {
+if(data == "") {
+document.getElementById('add').onclick = function(){
+    hexPop('permit');
+    } 
+}
+else {
+let $user = data[0]; 
+let pic = xqlfile + $user['pic'];
+let email = $user['email'];
+inValue('#semail', email); 
+
+$email.push(email);
+let name = $user['name'];
+inValue('#sname', name); 
+inValue('#smat', $user['matric']); 
+inValue('#filenn', $user['file']);
+
+if(name == "" || name == "null" || name == null) {
+name = $user['matric'];
+}
+let userid = $user['id']; 
+let level = $user['level'];
+let check = "";
+let clear = "Ground User"; 
+if(level == "dev") {
+check = '<i class="blue-tick" style="color: gold">'; 
+clear = "Developer"; 
+}
+
+if(level == "2") {
+check = '<i class="blue-tick" style="color: blue">';
+clear = "Representative"; 
+}
+
+if(level == "1" || level == null || level == undefined || level == "null") {
+    document.getElementById('add').onclick = function(){
+    hexPop('permit');
+    }
+    
+    document.getElementById('admin').onclick = function(){
+    hexPop('permit');
+    } 
+    
+    
+}
+
+if(level == "3") {
+check = '<i class="blue-tick" style="color: purple">';
+clear = "Administrative"; 
+}
+
+
+document.getElementById('userid').value = userid; 
+inSrc('#userimg', pic); 
+
+inAttr('#userimg', 'fallback', xqlfile + 'icon.png');
+rootHex();
+inText('#username', name); 
+inHTML('#check', check);
+inText('#clear', clear);    
+}  
+
+}
+
+}
+
+
+function fileUp() {
+document.querySelector('#filen').addEventListener('change', function() {
+ if (this.files && this.files[0]) {
+let img = document.querySelector('.upimg'); // $('img')[0]
+img.src = URL.createObjectURL(this.files[0]);
+let fname = this.files[0].name; 
+fname = fname.replace(/\s/, '-'); 
+fname = fname.replace(/\)/, '');
+fname = fname.replace(/\(/, ''); 
+document.getElementById('filenn').value = fname; 
+// set src to file url
+    }
+  });
+}
+
+const scant = document.getElementById('slide'); 
+const cont = scant.innerHTML; 
+scant.innerHTML = ""; 
+
+
+const strend = document.getElementById('trend'); 
+const popu = strend.innerHTML; 
+strend.innerHTML = ""; 
+
+const snall = document.getElementById('events'); 
+const nall = snall.innerHTML; 
+snall.innerHTML = ""; 
+
+
+const late = document.getElementById('latest'); 
+const later = late.innerHTML; 
+late.innerHTML = ""; 
+
+
+const saves = document.getElementById('saves'); 
+const saver = saves.innerHTML; 
+saves.innerHTML = ""; 
+
+
+
+
+const nswipe = document.getElementById('swiper'); 
+
+
+let tline = false; 
+timeLine(); 
+function timeLine(mode, find) {
+if(mode !== undefined) {
+tline = true; 
+}
+if(find == undefined) {
+$QUERY($con, $db, `SELECT events`).pull(allEvents);
+} else {
+ $QUERY($con, $db, `SELECT events REGEX name = '${find}'`).pull(allEvents);
+ 
+}
+}
+
+
+
+
+
+
+let $data = ""; 
+async function allEvents(data) {
+try {
+let others = false; 
+
+let count = 0;
+for(const row of data) {
+count++; 
+let rid = row['id'];
+row['pop'] = `pop="${rid} CLOSE"`; 
+row['img'] = xqlfile + row['file']; 
+await $QUERY($con, $db, `SELECT like COUNT revid = '${rid}'`).pull(facto);
+
+function facto(lco) {
+liker = lco;
+row['trend'] = lco;
+let currname = localStorage.getItem('lucom');
+row['currid'] = currname; 
+$QUERY($con, $db, `SELECT like COUNT revid = '${rid}' AND userid = '${currname}'`).pull(facti);
+let color = "black"; 
+function facti(hasl) {
+if(hasl > 0)  {
+color = "gold"; 
+}   
+setRol(liker, color); 
+}
+}   
+    
+function setRol(liker, col) {
+row['col'] = col; 
+row['liker'] = liker; 
+row['img'] = xqlfile + row['file'];
+row['keep'] = row['date'] + " " + row['time']; 
+row['time'] = convertTimeFormat(row['time']); 
+let time = row['date'];
+time = new Date(time); 
+const $month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(time);
+const $day = time.getDate();
+let now = new Date();
+
+// Calculate the time difference in milliseconds
+const timeDifference = now - time;
+time = $month + " " + $day;
+row['date'] = time; 
+
+
+
+
+
+
+let bio = row['bio']; 
+row['bio'] = $nl2br(bio); 
+let enter = $return(row, nall);
+let div = document.createElement("div"); 
+div.innerHTML = enter;
+snall.appendChild(div);
+rootHex();
+ 
+if(count !== data.length) { } else {
+others = true; 
+if(others)  { 
+
+if(tline == true) {} else {
+$WHERE(data, `SELECT events LIMIT 3`).pull(nslide);
+$WHERE(data, `SELECT events`).pull(Trending);
+$data = data; 
+
+let currid = localStorage.getItem('lucom');
+$QUERY($con, $db, `SELECT like WHERE userid = '${currid}'`).pull(bookMark); 
+
+
+
+let eve = $GET('event'); 
+if(eve !== null) {
+
+hexPop(eve)    
+}
+
+
+let userp = $GET('page'); 
+if(userp == "user") {
+   
+ show('#user');
+ openUser();
+}
+
+
+let sarp = $GET('page'); 
+if(sarp == "save") {
+   
+ show('#fav');
+ openSave();
+}
+
+
+
+}
+$WHERE(data, `SELECT events ORDER DESC LIMIT 10`).pull(Latest);
+
+hide('#load');
+}
+}
+
+
+}
+
+
+
+}
+} catch(error) {
+    alert(error)
+}
+
+
+}
+
+function recent() {
+
+timeLine('ref');
+    
+}
+
+
+function bookMark(data) {
+let them = document.getElementById('saves');
+them.innerHTML = ""; 
+for(const row of data) {
+let rid = row['revid']; 
+let feed = $data.filter(item => item['id'] == rid); 
+let div = $return(feed[0], saver);
+
+them.innerHTML = them.innerHTML + div;   
+}
+}
+
+
+
+
+function $sort(ql, cha) {
+return {
+by: function(order) { 
+
+let data = ql; 
+let ord = "ASC"; 
+if(cha !== undefined) {
+ord = cha;     
+}
+if(ord == "ASC"){
+data.sort((a, b) => a[order] - b[order]);
+} else if(ord == "DESC") {
+data.sort((a, b) => b[order] - a[order]);
+
+}
+
+return data;  
+}
+}
+}
+
+function convertTimeFormat(timeString) {
+  const [hours, minutes] = timeString.split(':');
+  const date = new Date();
+  date.setHours(parseInt(hours));
+  date.setMinutes(parseInt(minutes));
+
+  const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+  const formattedTime = date.toLocaleTimeString('en-US', options);
+
+  return formattedTime;
+}
+
+
+
+
+function Latest(data) {
+    hide('#upload')
+let them = document.getElementById('latest'); 
+them.innerHTML = ""; 
+
+for(const row of data) {
+row['img'] = xqlfile + row['file'];
+
+time = new Date(row['created']); 
+const $month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(time);
+const $day = time.getDate();
+let now = new Date();
+
+// Calculate the time difference in milliseconds
+const timeDifference = now - time;
+time = $month + " " + $day;
+const minu = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+if(days < 8) {
+time = days + "d";  
+} 
+
+if(days < 1) {
+
+time = hours + "h"; 
+
+if(hours < 1) {
+time = minu + "m";    
+
+}
+ }
+row['made'] = time; 
+
+
+
+
+
+} 
+let div = loop(data, later); 
+late.innerHTML = div;
+}
+
+
+
+
+
+async function Trending(data) {
+let count = 0; 
+for(const row of data) {
+count++; 
+let rid = row['id'];
+
+row['img'] = xqlfile + row['file'];
+ sort(); 
+
+}
+
+function sort() {
+data = $sort(data, 'DESC').by('trend');
+
+let enter = loop(data, popu, '3');
+strend.innerHTML = enter;
+
+
+
+
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+async function nslide(data) {
+try { 
+let count = 0; 
+for(const row of data) {  
+count++; 
+row['img'] = xqlfile + row['file']; 
+
+let bio = row['bio'];
+row['bio'] = $nl2br(bio); 
+let rid = row['id']; 
+
+
+let enter = $return(row, cont);
+let div = document.createElement("div"); 
+div.innerHTML = enter;
+div.id = "promo";
+div.setAttribute("class", "promo");
+nswipe.appendChild(div);
+if(count == data.length) {
+swiper();
+}
+
+
+}    
+} catch(error) {
+alert(error);
+}  
+}
+
+
+function newJob(img, name, id, date, rdate) {
+let url = window.location.href + "?events=" + id; 
+let from = "reminder@lucomevents.com";
+let head = "Reminder: " + name; 
+let email = $email[0]; 
+let body = `<div style="width: calc(95% - 20px); padding: 10px; border-radius: 10px; background: #FEEBE7; font-size: 17px; font-family: serif"><br><center><img width="200px" style="border-radius: 7px" src="${img}"></center><br><p>Don't Forget, "<span style="font-weight: bold">${name}</span>" is coming up on ${rdate}! Set your reminders and don't miss it!</p><a href="${url}" style="text-decoration: none;"><button style="border: none; width: auto; padding: 10px; background: white; border-radius: 6px;">See Details</button></a> <p style="text-align: left; font-weight: 600; font-size: 20px">LUCOM EVENTS</p></div>`; 
+$Jobber(email, from, head, date, body, 'reminder()'); 
+    
+}
+
+
+function reminder() {
+show('#reminder'); 
+setTimeout(function() {
+hide('#reminder');
+
+}, 2000); 
+
+    
+}
+
+
+
+function like(id, uid, coll, img, name, keep, date, time) {
+
+if(localStorage.getItem('lucom') == null) {
+location.href = "login.html";   
+} else {
+let poll = coll; 
+let rcol = document.getElementById('like'+id).style.color; 
+if(rcol.includes("black")) {
+    
+newJob(img, name, id, keep, date, time);  
+    
+    
+    
+$INSERT($db, `INSERT like FIELDS(revid, userid) VALUES(${id}, ${uid})`, `chLike('like${id}', 'gold', '+')`);
+    
+} else {
+
+$DELETE($db, `DELETE like WHERE revid = '${id}' AND userid = '${uid}'`, `chLike('like${id}', 'black', '-')`);   
+}
+}   
+}
+
+function chLike(elem, col, min) {
+let ele = document.querySelectorAll('#'+elem); 
+if(ele) {
+ele.forEach(function(rol) {
+rol.style.color = col; 
+}); 
+}
+
+
+let enu = document.querySelectorAll('#num'+elem);    
+if(enu) {
+enu.forEach(function(nlike) {
+let curr = parseInt(nlike.innerText); 
+if(min == "+") {
+nlike.innerText = curr + 1;   
+} else {
+ nlike.innerText = curr - 1;   
+ 
+}
+
+}); 
+}    
+    
+
+}
+
+let searchQ = document.getElementById('search'); 
+searchQ.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+find(); 
+  }
+});
+
+    searchQ.addEventListener('keyup', function() {
+    if(searchQ.value == "") {
+find('all');
+      }
+    });    
+
+
+
+
+
+
+
+function find(all) {
+let go = document.createElement("a"); 
+go.href = "#larea"; 
+go.click(); 
+ document.getElementById('latest').innerHTML = ""; 
+ 
+const loader = document.createElement("img");
+loader.src = "asset/loader.gif";
+loader.style.display = "block";
+loader.style.marginLeft = "auto";
+loader.style.marginRight = "auto";
+loader.style.width = "100px";
+loader.style.height = "100px";
+document.getElementById('latest').appendChild(loader);
+
+    
+    
+let searchQ = document.getElementById('search'); 
+let query = searchQ.value; 
+if(all == undefined)  {
+timeLine('ref', query); 
+} else {
+    timeLine('ref'); 
+    
+}
+}
+
+
+
+function proPic(){ 
+
+    document.querySelector('.updd').addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      var img = document.querySelector('#proff'); // $('#proff')[0]
+      img.src = URL.createObjectURL(this.files[0]); // set src to file url
+    }
+  });
+} 
+
+
+
+function swiper() {
+
+ const slider = document.querySelector('.promo-container'),
+  slides = Array.from(document.querySelectorAll('.promo'))
+
+let isDragging = false,
+  startPos = 0,
+  currentTranslate = 0,
+  prevTranslate = 0,
+  animationID,
+  currentIndex = 0,
+  userelement = false
+slides.forEach((slide, index) => {
+  const slideImage = slide.querySelector('img')
+  // disable default image drag
+  slideImage.addEventListener('dragstart', (e) => e.preventDefault())
+  // touch events
+  slide.addEventListener('touchstart', touchStart(index))
+  slide.addEventListener('touchend', touchEnd)
+  slide.addEventListener('touchmove', touchMove)
+  // mouse events
+  slide.addEventListener('mousedown', touchStart(index))
+  slide.addEventListener('mouseup', touchEnd)
+  slide.addEventListener('mousemove', touchMove)
+  slide.addEventListener('mouseleave', touchEnd)
+})
+
+// make responsive to viewport changes
+window.addEventListener('resize', setPositionByIndex)
+
+// prevent menu popup on long press
+window.oncontextmenu = function (event) {
+  event.preventDefault()
+  event.stopPropagation()
+  return false
+}
+
+function getPositionX(event) {
+  return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX
+}
+
+function touchStart(index) {
+  return function (event) {
+    currentIndex = index
+    startPos = getPositionX(event)
+    isDragging = true
+    animationID = requestAnimationFrame(animation)
+    slider.classList.add('grabbing')
+  }
+}
+
+function touchMove(event) {
+  if (isDragging) {
+    const currentPosition = getPositionX(event)
+    currentTranslate = prevTranslate + currentPosition - startPos
+  }
+  userelement = true;
+}
+
+function touchEnd() {
+    userelement = false;
+  cancelAnimationFrame(animationID)
+  isDragging = false
+  const movedBy = currentTranslate - prevTranslate
+
+  // if moved enough negative then snap to next slide if there is one
+  if (movedBy < -100) {
+      
+if(currentIndex < slides.length - 1){
+currentIndex += 1 } else {
+currentIndex = 0; 
+}
+} 
+  // if moved enough positive then snap to previous slide if there is one
+  if (movedBy > 100 && currentIndex > 0)  { currentIndex -= 1
+}
+  setPositionByIndex()
+
+  slider.classList.remove('grabbing')
+}  
+
+setInterval(function() { 
+  if(userelement !== true) {
+    if(currentIndex == 2) { 
+        currentIndex = 0 
+        setPositionByIndex() 
+    } else {
+    currentIndex += 1
+
+  setPositionByIndex()  }}
+  }, 4000);
+  
+
+
+
+function animation() {
+  setSliderPosition()
+  if (isDragging) requestAnimationFrame(animation)
+}
+
+function setPositionByIndex() {
+  
+  currentTranslate = currentIndex * -window.innerWidth
+  prevTranslate = currentTranslate
+  setSliderPosition()
+}
+
+function setSliderPosition() {
+  slider.style.transform = `translateX(${currentTranslate}px)`
+}
+
+}
+
+</script></body>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="asset/banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="asset/favico.ico">
+<meta data-react-helmet="true" name="description" content="How'd You Hear That Sound? Review It With SoundScale"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Login | Lucom Events">
+<meta property="twitter:description" content="How'd You Hear That Sound? Review It With SoundScale">
+<meta property="twitter:image" content="https://lucom.vercel.app/favico.ico">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Login | Lucom Events</title>
+ 
+<link rel="stylesheet" href="xql/hex.css">
+<script src="xql/xcon.js"></script>
+<script src="xql/hex.js"></script>
+<script src="xql/query.js"></script>
+<script src="xql/que.js"></script>
+</head>
+<body>
+<style>
+html, body {
+    heigh: 100vh; 
+    width: 100vw; 
+    margin: 0;
+}
+.inp {
+padding: 10px 15px;
+height: 30px; 
+width: calc(95% - 30px);
+font-family: 'Outfit';
+font-size: 16px;
+border: 1.5px solid grey; 
+border-radius: 10px;
+}
+
+.inp:first-child {
+    margin-bottom: 12px;
+    
+}
+
+.btn {
+padding: 10px 15px;
+height: 50px; 
+width: calc(100% - 30px);
+font-family: 'Rubik';
+font-size: 17px;
+border: 1.5px solid grey; 
+border-radius: 10px;
+color: white;
+margin-left: 15px;
+}
+</style>   
+    
+<div fixed width="100%" push="top">
+<img margin="-30px top" width="100%" src="asset/upgreen.png">
+</div> 
+    
+<div fixed width="100%" push="bottom">
+<img margin="-40px bottom" width="100%" src="asset/downgreen.png">
+</div> 
+
+<div width="95%" page-middle>
+    
+<section page-middle-h width="90%">
+<p bold font="Rubik" size="30px">Let's Sign In</p> 
+<p bold opacity="0.7" margin="-10px top" font="Rubik" size="17px">Welcome To Lucom Events</p>
+<br>
+<span>
+<input type="number" id="matric" class="inp" placeholder="Matric No">
+<input type="password" id="password" class="inp" placeholder="Password">
+<input hidden margin="10px top" type="email" id="email" class="inp" placeholder="Email Address">
+
+</span>
+<p id="error" margin="4px,auto,0,auto" color="red" size="15px" font="Poppins"></p>
+<p margin="6px top" bold link="" font="Poppins" size="16px" color="purple" right>Forgot Password?</p>
+<button onclick="auth()" noborder center id="btn" class="btn" back="#055576">Sign In</button>
+</section>
+    
+</div>
+
+
+    
+    
+<script>
+$IMPORT('@UI'); 
+const $con = "IiTkoYgn4IMbArj7JtAw"; 
+const $db = "lucom";
+$START('XQL:'+$con); 
+function auth() {
+let email = document.getElementById('email').value; 
+if(email !== "") {
+document.getElementById('error').innerText = 'Creating Account...'; 
+ 
+$QUERY($con, $db, `SELECT users WHERE Key = 'last'`).pull(prev);
+ 
+function prev(last) {
+let passw = document.getElementById('password').value;
+let mat = document.getElementById('matric').value; 
+let lastid = last[0]['id']; 
+let newid = parseInt(lastid) + 1; 
+$INSERT($db, `INSERT users FIELDS(id, matric, password, email) VALUES(${newid}, ${mat}, ${passw}, ${email})`, `sign('${newid}')`); 
+    
+}
+
+ 
+ 
+    
+} else  {
+    
+document.getElementById('error').innerText = 'Processing...'; 
+let matric = document.getElementById('matric').value; 
+
+$QUERY($con, $db, `SELECT users WHERE matric = '${matric}'`).pull(check);
+
+function check(data) {
+    try {
+if(data == "")  {
+   
+    
+document.getElementById('error').innerText = 'Create Account';
+
+document.getElementById('email').style.display = 'block'; 
+ 
+ 
+} else {      
+let pass = document.getElementById('password').value; 
+let obj = data[0];
+let key = obj['password'];
+if(key == pass) {
+document.getElementById('error').innerText = 'Logging You In...'; 
+let id = obj['id'];
+if(id !== "" || id !== null || id !== undefined) {
+logIn(id);    
+}
+} else {
+document.getElementById('error').innerText = 'Incorrect Password'; 
+}
+
+}
+} catch(error) {
+    alert(error)
+}
+}
+
+}
+}
+
+
+
+function sign(id) {
+localStorage.setItem("lucom", id); 
+location.href = 'index.html'; 
+}
+
+function logIn(id) {
+localStorage.setItem("lucom", id); 
+location.href = 'index.html'; 
+}
+
+
+
+</script>
+    
+    
+</body>
