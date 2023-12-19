@@ -706,7 +706,7 @@ $QUERY($con, $db, `SELECT like COUNT revid = '${rid}' AND userid = '${currname}'
 let color = "black"; 
 function facti(hasl) {
 if(hasl > 0)  {
-color = "gold"; 
+color = "red"; 
 }   
 setRol(liker, color); 
 }
@@ -1007,7 +1007,7 @@ newJob(img, name, id, keep, date, time);
     
     
     
-$INSERT($db, `INSERT like FIELDS(revid, userid) VALUES(${id}, ${uid})`, `chLike('like${id}', 'gold', '+')`);
+$INSERT($db, `INSERT like FIELDS(revid, userid) VALUES(${id}, ${uid})`, `chLike('like${id}', 'red', '+')`);
     
 } else {
 
