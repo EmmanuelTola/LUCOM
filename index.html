@@ -470,13 +470,14 @@ $bio
 &nbsp;&nbsp;<button index="99" back="none" border="0.1px solid grey" width="35px" height="35px" radius="50%" size="22px" bold onclick="closeS();"><i class="fa fa-times"></i></button>
 </div>
 <update page-middle-h width="95%" query="id = $js-localStorage.getItem('lucom')" call="history.go(0)" data="lucom" table="users">
-<form>
+<form index="9">
 <img onclick="fileUp(); document.getElementById('filen').click()" class="upimg" id="userimg" width="100px" round>
 <br><br>
 <input use="dummy" type="file" hidden id="filen">
 <input name="pic" hidden id="filenn">
 <input style="pointer-events: none; background: rgba(0,0,0,0.1)" name="matric" id="smat" class="inp">
-<input name="name" id="sname" class="inp" placeholder="Display Name...">
+
+<input index="9" name="name" id="sname" class="inp" placeholder="Display Name...">
 
 <input placeholder="Email Address..." name="email" id="semail" class="inp">
 <br>
@@ -563,6 +564,9 @@ inValue('#semail', email);
 
 $email.push(email);
 let name = $user['name'];
+    if(name == undefined  || name == "undefined") {
+    name = ""; 
+    }
 inValue('#sname', name); 
 inValue('#smat', $user['matric']); 
 inValue('#filenn', $user['file']);
