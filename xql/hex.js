@@ -224,6 +224,12 @@ hexql = hexql.filter(item => item !== row);
 
 });
 
+let codetest = JSON.stringify(hexql);
+try {
+JSON.parse(codetest);
+  } catch (error) {
+    return "error";
+  }
 
 
 let inidata = encodeURIComponent(JSON.stringify(hexql));
@@ -506,6 +512,15 @@ item[nkey] = nval;
 }); 
 
 }
+
+let codetest = JSON.stringify(hexql);
+try {
+JSON.parse(codetest);
+  } catch (error) {
+    return "error";
+  }
+
+
 let inidata = encodeURIComponent(JSON.stringify(hexql));
 
 let xhr = new XMLHttpRequest();
