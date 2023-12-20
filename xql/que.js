@@ -259,10 +259,26 @@ let path = xqlget+"?key="+passkey+"&tab="+dataSelector+"&row="+db+"&sess="+makei
 
 
  return {
-pull: function(usage) {
+pull: function(usage, killer) {
+let kill = ""; 
 return fetch(path).then(response => response.text()).then(data => {
 if(data == "") { } else {
 let hexql = JSON.parse(data);
+if(hexql) {
+} else {
+kill  = "Empty or corrupt data";
+if(typeof killer === 'function') {
+ if(killer.length === 0) {
+     killer(); 
+ } else {  
+    
+killer(kill);
+
+}
+
+return "error"; 
+}
+}
 let getData;  
 const dataVal = hexql; 
 
@@ -428,10 +444,28 @@ return count;
 }
 }).catch(error => {
 console.error('Error:', error);
+if(typeof killer === 'function') {
+
+ if(killer.length === 0) {
+     killer(); 
+ } else {  
+    
+killer(error);
+
+}
+
+
+return "error"; 
+}
+
+
+
 throw error; // throw error away lol
 });
 } };
 } else {
+    
+    
  console.log('Invalid Query');
 }
 }
@@ -445,8 +479,7 @@ throw error; // throw error away lol
 
 function $WHERE(JDATA, query) {
 let string = query; 
-const match2 = string.match(/SELECT (\w+)/);
-if (match2) {
+
   const dataSelector = match2[1];
   let conditionSelector = ""; 
   let conditionValue = "";
@@ -644,7 +677,7 @@ return count;
 
     
 } };
-} else {
- console.log('Invalid Query');
-}
+
+    
+.
 }
