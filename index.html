@@ -253,7 +253,7 @@ history.go(-1);
 
 
 function shareNow(linkh, nameh) {
-let link = "https://lucomdev.000webhostapp.com/index.html?event="+linkh;  
+let link = "https://lucom.vercel.app/index.html?event="+linkh;  
  if (navigator.share) {
 navigator.share({
  
@@ -537,6 +537,7 @@ $IMPORT('@UI');
 const $con = "IiTkoYgn4IMbArj7JtAw"; 
 const $db = "lucom";
 let $email = []; 
+let $share = [];
 $START('XQL:'+$con); 
 let user = localStorage.getItem('lucom');
 if(user == null) {
@@ -768,8 +769,10 @@ $QUERY($con, $db, `SELECT like WHERE userid = '${currid}'`).pull(bookMark);
 
 let eve = $GET('event'); 
 if(eve !== null) {
-
-hexPop(eve)    
+if($share[0] == eve) {} else {
+$share.push(eve); 
+hexPop(eve);  
+    }
 }
 
 
