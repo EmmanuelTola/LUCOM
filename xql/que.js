@@ -480,8 +480,7 @@ throw error; // throw error away lol
 function $WHERE(JDATA, query) {
 let string = query; 
 
-  const dataSelector = match2[1];
-  let conditionSelector = ""; 
+    let conditionSelector = ""; 
   let conditionValue = "";
   let mtype = "null";
 if(string.includes("WHERE")) {
