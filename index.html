@@ -770,11 +770,10 @@ $QUERY($con, $db, `SELECT like WHERE userid = '${currid}'`).pull(bookMark);
 let eve = $GET('event'); 
 if(eve !== null) {
 if($share[0] == eve) {
-  alert('shared');
-    hexPop('EELaiNbe'); 
+    hexPop(eve); 
 } else {
 $share.push(eve); 
-hexPop(eve);
+
     
     }
 }
