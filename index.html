@@ -380,7 +380,7 @@ hide('#copied');
 
 <div id="events">
 
-<div $pop pop-class="eve">
+<div $pop pop-class="eve" pop-close="alert('poper');">
 <img border="0.4px solid grey" onclick="this.requestFullscreen()" radius="3px" src="$img" width="80%">&nbsp; <i size="27px" bold onclick="shareNow('$id', '$name')" class="fa fa-share-alt"></i>
 <div flex style="align-items: center;" width="100%"><p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 75%" bold="2" font="Rubik" size="20px">$name</p>&nbsp;&nbsp;
 <div><button padding="6px" radius="50%" ratio="1/1" border="0.2px solid grey" name="likebtn" id="likebtn" flex onclick="like('$id', '$currid', '$col', '$img', '$name', '$keep', '$date, $time');" style="background: none; align-items: center; float: right; width: auto; font-size: 30px;"><i id="like$id" style="color: $col" class="fa-regular fa-heart"></i> &nbsp;<size down="15" id="numlike$id">$trend</size></button> 
