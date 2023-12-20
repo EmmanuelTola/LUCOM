@@ -186,7 +186,7 @@ function openSave() {
     
 const mediaState = { page: 'save' };
 prev = "save"; 
-  history.pushState(mediaState, null, '?page=save#save');
+history.pushState(mediaState, null, '?page=save#save');
 
 }
 
@@ -199,8 +199,8 @@ let burl = window.location.href;
  
 if(prel == "user" || prel == "save" || burl.includes("user") || burl.includes("save")) {
 let baseUrl = burl.split('?')[0];
-    alert('t ' + burl + ": " + prel);
-history.pushState({}, document.title, baseUrl);
+alert(baseUrl);    
+history.pushState({}, null, baseUrl);
    }
 
 }       
