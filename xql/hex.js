@@ -129,6 +129,28 @@ let fullDate = currentDateTime.toLocaleString();
 return fullDate;   
 }
 
+function $sort(ql) {
+return {
+by: function(order, cha) { 
+
+let data = ql; 
+let ord = "ASC"; 
+if(cha !== undefined) {
+ord = cha;     
+}
+if(ord == "ASC"){
+data.sort((a, b) => a[order] - b[order]);
+} else if(ord == "DESC") {
+data.sort((a, b) => b[order] - a[order]);
+
+}
+
+return data;  
+}
+}
+}
+
+
 function $START(bundle) {
 if(bundle == "router")  {
 routeLink();
