@@ -196,10 +196,10 @@ if(prev) {
 prel = prev; 
 } 
 let burl = window.location.href;
-    alert(burl + ": " + prev); 
+ 
 if(prel == "user" || prel == "save" || burl.includes("user") || burl.includes("save")) {
-var baseUrl = window.location.href.split('?')[0];
-
+let baseUrl = burl.split('?')[0];
+    alert('t ' + burl + ": " + prel);
 history.pushState({}, document.title, baseUrl);
    }
 
