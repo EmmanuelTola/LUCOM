@@ -240,7 +240,8 @@ if(prev) {
 } else {
 let prev = ""; 
 }
-var burl = window.location.href; 
+var burl = window.location.href;
+    alert(burl + ": " + prev); 
 if(prev == "user" || prev == "save" || burl.includes("user") || burl.includes("save")) {
 var baseUrl = window.location.href.split('?')[0];
 
