@@ -836,29 +836,6 @@ them.innerHTML = them.innerHTML + div;
 }
 
 
-
-
-function $sort(ql, cha) {
-return {
-by: function(order) { 
-
-let data = ql; 
-let ord = "ASC"; 
-if(cha !== undefined) {
-ord = cha;     
-}
-if(ord == "ASC"){
-data.sort((a, b) => a[order] - b[order]);
-} else if(ord == "DESC") {
-data.sort((a, b) => b[order] - a[order]);
-
-}
-
-return data;  
-}
-}
-}
-
 function convertTimeFormat(timeString) {
   const [hours, minutes] = timeString.split(':');
   const date = new Date();
@@ -934,7 +911,7 @@ row['img'] = xqlfile + row['file'];
 }
 
 function sort() {
-data = $sort(data, 'DESC').by('trend');
+data = $sort(data).by('trend', 'DESC');
 
 let enter = loop(data, popu, '3');
 strend.innerHTML = enter;
