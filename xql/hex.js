@@ -129,6 +129,7 @@ let fullDate = currentDateTime.toLocaleString();
 return fullDate;   
 }
 
+
 function $sort(ql) {
 return {
 by: function(order, cha) { 
@@ -147,8 +148,9 @@ data.sort((a, b) => b[order] - a[order]);
 
 return data;  
 }
+};
 }
-}
+
 
 
 function $START(bundle) {
@@ -2876,13 +2878,21 @@ const spop = hexxer.getElementsByTagName('*');for(var i = 0; i < spop.length;i++
 const sumpop = spop[i];
 const haspop = hasAttr(spop[i], 'pop');if(haspop == true){
 const popinput = sumpop.getAttribute("pop");
-const pclass = sumpop.getAttribute("pop-class"); 
+const pclass = sumpop.getAttribute("pop-class");
+const pclose = sumpop.getAttribute("pop-close");
+const popen = sumpop.getAttribute("pop-open"); 
 popray = popinput.split(' ');
 poprole = popray[0]; 
 const popval = sumpop.innerHTML;
 const popbody = document.createElement("div");
 popbody.setAttribute("class", "popbody");
 popbody.id = poprole;
+if(pclose !== undefined) {
+popbody.setAttribute("pop-close", pclose);    
+}
+if(popen !== undefined) {
+popbody.setAttribute("pop-open", popen);    
+}
 pophome.appendChild(popbody);
 const newpop = document.createElement("div");
 newpop.classList.add("s-pop");
@@ -3802,12 +3812,32 @@ function hexPop(elementh) {
 const popid = elementh;
 const thepop = document.getElementById(popid);
 if(thepop) {
+const pclose = thepop.getAttribute("pop-close");
+const popen = thepop.getAttribute("pop-open");
+
+
+if(thepop) {
 if(thepop.style.display == 'block') {
-    thepop.style.display='none';
+thepop.style.display='none';
+if(pclose !== undefined) {
+let cFunc = new Function(pclose); 
+cFunc.call(this); 
+    
+    
+}
 } else {
     thepop.style.display='block';
+if(popen !== undefined) {
+let cFunc = new Function(popen); 
+cFunc.call(this); 
+    
+    
+}
+
+ 
     
 }}
+}
 }
  
 function togNav() {
