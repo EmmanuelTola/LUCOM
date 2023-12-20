@@ -199,9 +199,11 @@ let burl = window.location.href;
  
 if(prel == "user" || prel == "save" || burl.includes("user") || burl.includes("save")) {
 let baseUrl = burl.split('?')[0];
-alert(baseUrl);    
+    
 history.pushState({}, null, baseUrl);
-   }
+   } else {
+closeU(); closeF();
+}
 
 }       
 
@@ -310,7 +312,7 @@ hide('#copied');
 <div index="98" width="100%" margin="10px bottom" class="nav" fixed push="bottom" flex>
     
 <div index="98" radius="7px" theme="shadow" id="minor" back="white">
-<i onclick="openHome(); hide('#user'); closeU(); closeF(); hide('#user'); hide('#fav');" class="fa fa-house"></i>
+<i onclick="openHome(); hide('#user'); hide('#fav');" class="fa fa-house"></i>
 <i onclick="toggle('#find'); closeU(); closeF(); hide('#user'); hide('#fav');" class="fa fa-search"></i>
 <i onclick="openSave(); show('#fav'); closeU(); hide('#user')" style="font-weight: 100" class="fa fa-bookmark"></i>
 <i onclick="openUser(); show('#user'); closeF(); hide('#fav')" style="font-weight: 100" class="fa fa-user"></i>
