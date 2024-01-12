@@ -22,7 +22,7 @@
 <body>
 <style>
 html, body {
-    heigh: 100vh; 
+    height: 100vh; 
     width: 100vw; 
     margin: 0;
 }
@@ -34,6 +34,11 @@ font-family: 'Outfit';
 font-size: 16px;
 border: 1.5px solid grey; 
 border-radius: 10px;
+}
+
+.inp:focus {
+   
+    outline-color: #07a9ed;
 }
 
 .inp:first-child {
@@ -51,6 +56,7 @@ border: 1.5px solid grey;
 border-radius: 10px;
 color: white;
 margin-left: 15px;
+cursor: pointer;
 }
 </style>   
     
@@ -58,15 +64,15 @@ margin-left: 15px;
 <img margin="-30px top" width="100%" src="asset/upgreen.png">
 </div> 
     
-<div fixed width="100%" push="bottom">
+<div  fixed width="100%" push="bottom">
 <img margin="-40px bottom" width="100%" src="asset/downgreen.png">
 </div> 
 
 <div width="95%" page-middle>
     
 <section page-middle-h width="90%">
-<p bold font="Rubik" size="30px">Let's Sign In...</p> 
-<p bold opacity="0.7" margin="-10px top" font="Rubik" size="17px">Welcome To Lucom Events</p>
+<p bold font="Rubik" size="35px">Let's Sign You In...</p> 
+<p bold opacity="0.7" margin="-32px top" font="Rubik" size="16 px">Welcome To Lucom Events</p>
 <br>
 <span>
 <input type="number" id="matric" class="inp" placeholder="Matric No">
@@ -75,8 +81,9 @@ margin-left: 15px;
 
 </span>
 <p id="error" margin="4px,auto,0,auto" color="red" size="15px" font="Poppins"></p>
-<p margin="6px top" bold link="" font="Poppins" size="16px" color="purple" right>Forgot Password?</p>
-<button onclick="auth()" noborder center id="btn" class="btn" back="#055576">Sign In</button>
+<p 
+ margin="6px top" bold link="" font="Rubik" size="14px" color="black" right style="width: 95%;">Forgot Password?</p>
+<button onclick="auth()" noborder center id="btn" class="btn" back="#07A9ED" size="21px">Sign In</button>
 </section>
     
 </div>

@@ -1,0 +1,46 @@
+@media (max-width: 650px) {
+
+#cards {
+    width: 80%;
+}
+
+}
+
+
+@media (min-width: 650px) {
+    
+    #cards {
+        width: 50%;
+        
+    }
+}
+
+
+
+@media (max-width: 385px) {
+    
+    #slideimg {
+        background-repeat: no-repeat;
+        background-size: cover;
+        object-fit: fill;
+      height: 50vh;
+        width: 100%;
+    }
+}
+
+
+@media (min-width: 385px) {
+    
+    #slideimg {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        object-fit: contain;
+        overflow: hidden; 
+        margin: 0;
+        height: 80vh;
+        width: 100%;
+        transform: scaleX(2);
+        
+    }
+}
