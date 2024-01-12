@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <title>Lucom Events</title>
 <link rel="stylesheet" href="xql/hex.css">
+<link rel="stylesheet" href="./media.css">
 <script src="xql/xcon.js"></script>
 <script src="xql/hex.js?v=cpopop"></script>
 <script src="xql/query.js"></script>
@@ -127,7 +128,8 @@ transform: translate(-50%, 0%) !important;
 .poptext {
 max-height: 90vh !important;
 }
- 
+
+
 </style>
 
 
@@ -339,7 +341,7 @@ hide('#copied');
 
 <div pop="permit">
 <div page-middle-h font="Poppins" size="20px">
-<i bold size="40px" color="red" class="fa fa-warning"></i><br><hr><in bold="3">No Clearance For This Action.</in><br><in bold opacity="0.6">Contact the necessary representative to add an event</in></div>
+<i bold size="40px" color="red" class="fa fa-warning"></i><br><hr><in bold="3">No Clearance For This Action.</in><br><in bold opacity="0.6">Contact the necessary representatives to add an event</in></div>
 </div>
 
 <div style="display: none;" id="push">
@@ -375,11 +377,13 @@ hide('#copied');
 </segment>
 </div>
 
-<div width="100%" id="slide">
 
-<div relative>
-<img width="100%" ratio="3/2.5" src="$img">
-<div absolute push="bottom" style="width: calc(100% - 20px);" index="9" padding="15px,10px,15px,10px" margin="-10px bottom" back="rgba(0,0,0,0.8)" color="white" >
+
+<div width="100%"  id="slide">
+
+<div relative >
+<img id="slideimg"  ratio="3/2.5" src="$img">
+<div push="bottom" style="width: calc(100% - 20px);" index="9" padding="15px,10px,15px,10px" margin="-10px bottom" back="rgba(0,0,0,0.8)" color="white" >
 <in margin="0 top" size="20px" bold font="Rubik">$name<br><in size="16px">$date</in></in>
 <br>
 <button onclick="hexPop('$id'); openPop()" margin="5px top" back="white" theme="smart" font="Poppins" uppercase size="17px" bold>See Info <i class="fa fa-exclamation-circle"></i></button>
@@ -387,6 +391,8 @@ hide('#copied');
 
 </div>
 </div>
+
+
 
 <section id="swiper" class="promo-container">
 </section>
@@ -405,7 +411,6 @@ hide('#copied');
 $bio    
 </div>
 
-    
 </div>
 
 
@@ -422,13 +427,15 @@ $bio
 </div>
 
 
-<div id="load" class="load">
+
+
+<di id="loa" class="loa">1 
  
-<div page-middle>
- <img src="asset/loader.gif" width="120px">   
-</div>
+<di page-middle>
+ <im src="asset/loader.gif" widt="120px">   
+</di>
  
-</div>
+</di>
 
 
 
@@ -438,7 +445,7 @@ $bio
 
 
 <div id="latest">
-<div margin="10px bottom" relative theme="smart" page-middle-h width="85%" radius="5px">
+<div id="cards"  margin="10px bottom" relative theme="smart" page-middle-h  radius="5px">
 <div back="white" padding="12px" radius="0 5px 0 5px" absolute push="top right">$date<br><size bold opacity="0.7" down="2">$time</size></div>
 <img src="$img" noselect width="100%" ratio="3/2.6">
 <div relative flex style="align-items: center;" width="100%"><p style="word-wrap: wrap; max-width: 70%" bold="2" font="Rubik" size="18px">$name</p>&nbsp;&nbsp;<button onclick="hexPop('$id'); openPop()" absolute push="right" theme="smart" width="auto">View ></button>
@@ -451,6 +458,7 @@ $bio
     
     
 </div>
+
 
 <div style="display: none;" class="user" id="user">
 <div fixed width="100%" push="top">
